@@ -1,4 +1,6 @@
 N = int(input())
+arr = [-1] * (N + 2)
+
 
 def recurse(n):
 	if n == 0:
@@ -6,6 +8,8 @@ def recurse(n):
 	elif n == 1:
 		return 1
 	else:
-		return recurse(n -1) + recurse(n -2)
+		rec = recurse(n - 1) + recurse(n - 2)
+		arr[n] = rec
+		return rec
 
 print(recurse(N))
