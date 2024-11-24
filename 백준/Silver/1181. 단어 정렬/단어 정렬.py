@@ -1,12 +1,13 @@
 N = int(input())
-lst = []
+s = set()
 
 for _ in range(N):
 	M = input()
-	lst.append(M)
+	s.add(M)
 
-l = list(set(lst))
-l.sort(key=lambda x: (len(x), x))
+lst = list(s)
+lst.sort()
+lst.sort(key=len)
 
-for a in l:
-	print(a) 
+for l in lst:
+	print(l)
