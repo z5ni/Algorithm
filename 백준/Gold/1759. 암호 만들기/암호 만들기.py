@@ -1,18 +1,18 @@
-R, N = map(int, input().split())
-lst = sorted(input().split())
-pwd = []
+L, C = map(int, input().split())
+lst = sorted(list(input().split()))
 
-# 모음의 개수 -> 1<=모음개수<=R-2
-def secu(n):
-	if len(pwd) == R:
-		cnt = len(set(pwd) & set(['a', 'e', 'i', 'o', 'u']))
-		if 1 <= cnt and cnt <= R-2:
-			print(''.join(sorted(pwd)))
-			return
+choose = []
 
-	for i in range(n, len(lst)):
-		pwd.append(lst[i])
-		secu(i+1)
-		pwd.pop()
+def combi(idx, level):
+	if level == L:
+		cnt = len(set(choose) & set(['a', 'e', 'i', 'o', 'u']))
+		if cnt >= 1 and L-cnt >= 2 :
+			print(''.join(choose))
+		return
 
-secu(0)
+	for i in range(idx, len(lst)):
+		choose.append(lst[i])
+		combi(i+1, level+1)
+		choose.pop()
+
+combi(0, 0)
