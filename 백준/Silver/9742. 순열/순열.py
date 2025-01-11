@@ -3,10 +3,11 @@ while True:
         lst, N = input().split()
         check = [False] * len(lst)
         per_list = []
+        choose = []
 
-        def per(level, choose):
+        def per(level):
         	if level == len(lst):
-        		per_list.append(''.join(map(str, choose[:])))
+        		per_list.append(''.join(choose))
         		return
         	
         	for i in range(0, len(lst)):
@@ -15,13 +16,12 @@ while True:
         		choose.append(lst[i])
         		check[i] = True
 
-        		per(level + 1, choose)
+        		per(level + 1)
 
         		check[i] = False
         		choose.pop()
 
-
-        per(0, [])
+        per(0)
         try:
         	string = per_list[int(N) - 1]
         	print(f"{lst} {N} = {string}")
