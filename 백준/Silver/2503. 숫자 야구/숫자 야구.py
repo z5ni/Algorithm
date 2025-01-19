@@ -6,49 +6,35 @@ tests = []
 for _ in range(N):
 	num, strike, ball = map(int, input().split())
 	tests.append((num, strike, ball))
-maybe = []
 
+cnt = 0
 for a in range(1, 10):
 	for b in range(1, 10):
 		for c in range(1, 10):
 			if a == b or b == c or c == a:
 				continue
 
-			# 세자리 숫자가 정해짐
-			for test in tests:
-				# abc와 test[0]의 관계가 strike, ball을 만족하는지 확인하는 로직 필요
-				bal = 0
-				strik = 0
+			current = f"{a}{b}{c}"
+			test_pass_cnt = 0
 
-				if str(test[0])[0] == str(a):
-					strik += 1
-				elif str(a) in str(test[0]):
-					bal += 1
+			for test_num, test_strike, test_ball in tests:
+				strike = 0
+				ball = 0
 
-				if str(test[0])[1] == str(b):
-					strik += 1
-				elif str(b) in str(test[0]):
-					bal += 1
+				# 인덱스로 비교
+				for i in range(3):
+					if current[i] == str(test_num)[i]:
+						strike += 1
+					elif current[i] in str(test_num):
+						ball += 1
+				# print(f"{current} {test_num} {strike} {ball}")
 
-				if str(test[0])[2] == str(c):
-					strik += 1
-				elif str(c) in str(test[0]):
-					bal += 1
+				if strike == test_strike and ball == test_ball:
+					test_pass_cnt += 1
 
-				if strik == test[1] and bal == test[2]:
-					# 가능성 있는 숫자조합을 리스트에 삽입
-					maybe.append(a * 100 + b * 10 + c * 1)
-
-# maybe 안에서 개수가 N개인거 개수 찾기
-maybe_set = set(maybe)
-maybe_dict = {}
-
-for ms in maybe:
-	maybe_dict[ms] = maybe_dict.get(ms, 0) + 1
-
-cnt = 0
-for k, v in maybe_dict.items():
-	if v == N:
-		cnt += 1
+			# 특정 숫자가 모든 테스트를 통과했을 경우에, 
+			# 테스트 통과 카운트가 질문의 개수와 같음
+			if test_pass_cnt == N:
+				cnt += 1
 
 print(cnt)
