@@ -5,7 +5,7 @@ tests = []
 
 for _ in range(N):
 	num, strike, ball = map(int, input().split())
-	tests.append((num, strike, ball))
+	tests.append((str(num), strike, ball))
 
 cnt = 0
 for a in range(1, 10):
@@ -23,11 +23,10 @@ for a in range(1, 10):
 
 				# 인덱스로 비교
 				for i in range(3):
-					if current[i] == str(test_num)[i]:
+					if current[i] == test_num[i]:
 						strike += 1
-					elif current[i] in str(test_num):
+					elif current[i] == test_num[0] or current[i] == test_num[1] or current[i] == test_num[2]:
 						ball += 1
-				# print(f"{current} {test_num} {strike} {ball}")
 
 				if strike == test_strike and ball == test_ball:
 					test_pass_cnt += 1
