@@ -5,7 +5,7 @@ tests = []
 
 for _ in range(N):
 	num, strike, ball = map(int, input().split())
-	tests.append((str(num), strike, ball))
+	tests.append((num, strike, ball))
 
 cnt = 0
 for a in range(1, 10):
@@ -14,19 +14,29 @@ for a in range(1, 10):
 			if a == b or b == c or c == a:
 				continue
 
-			current = f"{a}{b}{c}"
 			test_pass_cnt = 0
 
 			for test_num, test_strike, test_ball in tests:
 				strike = 0
 				ball = 0
 
-				# 인덱스로 비교
-				for i in range(3):
-					if current[i] == test_num[i]:
-						strike += 1
-					elif current[i] == test_num[0] or current[i] == test_num[1] or current[i] == test_num[2]:
-						ball += 1
+				# 숫자 계산이 문자열 계산보다 빠름
+				a_t = test_num // 100
+				b_t = (test_num // 10) % 10
+				c_t = test_num % 10
+
+				if a == a_t:
+					strike += 1
+				elif a == b_t or a == c_t:
+					ball += 1
+				if b == b_t:
+					strike += 1
+				elif b == a_t or b == c_t:
+					ball += 1
+				if c == c_t:
+					strike += 1
+				elif c == b_t or c == a_t:
+					ball += 1
 
 				if strike == test_strike and ball == test_ball:
 					test_pass_cnt += 1
