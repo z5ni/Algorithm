@@ -5,7 +5,11 @@ tests = []
 
 for _ in range(N):
 	num, strike, ball = map(int, input().split())
-	tests.append((num, strike, ball))
+	a_t = num // 100
+	b_t = (num // 10) % 10
+	c_t = num % 10
+
+	tests.append((a_t, b_t, c_t, strike, ball))
 
 cnt = 0
 for a in range(1, 10):
@@ -16,15 +20,11 @@ for a in range(1, 10):
 
 			test_pass_cnt = 0
 
-			for test_num, test_strike, test_ball in tests:
+			for a_t, b_t, c_t, test_strike, test_ball in tests:
 				strike = 0
 				ball = 0
 
 				# 숫자 계산이 문자열 계산보다 빠름
-				a_t = test_num // 100
-				b_t = (test_num // 10) % 10
-				c_t = test_num % 10
-
 				if a == a_t:
 					strike += 1
 				elif a == b_t or a == c_t:
