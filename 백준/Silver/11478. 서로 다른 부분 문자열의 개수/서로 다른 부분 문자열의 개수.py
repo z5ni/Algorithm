@@ -1,8 +1,7 @@
-result = set()
+import sys
 
-S = input()
+S = sys.stdin.readline().strip()
 result = set()
-cnt = 0
 
 for i in range(len(S)+1):
 	for j in range(1, len(S)+1):
