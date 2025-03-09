@@ -8,7 +8,7 @@ d = sorted(list(map(int, input().rstrip().split())), reverse=True)
 
 dis = min(B, C, D)
 print(sum(b) + sum(c) + sum(d))
-disc = (sum(b[:len(b)-(len(b)-dis)]) + sum(c[:len(c)-(len(c)-dis)])+ sum(d[:len(d)-(len(d)-dis)]))*0.9
-not_disc = sum(b[len(b)-(len(b)-dis):])+sum(c[len(c)-(len(c)-dis):])+sum(d[len(d)-(len(d)-dis):])
+disc = (sum(b[:dis]) + sum(c[:dis])+ sum(d[:dis]))*0.9
+not_disc = sum(b[dis:])+sum(c[dis:])+sum(d[dis:])
 
 print(int(disc+not_disc))
