@@ -29,6 +29,9 @@ while q:
 		q.append((adj_node, level + 1))
 		visited[adj_node] = True
 
+	if level == K + 1:
+		break
+
 result = []
 
 for k, v in depth.items():
