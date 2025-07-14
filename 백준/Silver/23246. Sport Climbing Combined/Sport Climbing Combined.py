@@ -1,9 +1,11 @@
-N = int(input())
-medal = []
+import sys
+input = sys.stdin.readline
+player = []
 
-for _ in range(N):
-	b, p, q, r = map(int, input().split())
-	medal.append((b, p*q*r, p+q+r))
+n = int(input().rstrip())
+for _ in range(n):
+	b, p, q, r = map(int, input().rstrip().split())
+	player.append((b, p*q*r, p+q+r))
 
-medal = sorted(medal, key=lambda x: (x[1], x[2], x[0]))
-print(medal[0][0], medal[1][0], medal[2][0])
+player = sorted(player, key=lambda x: (x[1], x[2], x[0]))
+[print(player[i][0], end=' ') for i in range(3)]
