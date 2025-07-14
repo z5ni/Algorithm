@@ -1,18 +1,15 @@
-L, C = map(int, input().split())
-lst = sorted(list(input().split()))
+import sys
+from itertools import combinations
 
-choose = []
+input = sys.stdin.readline
+L, C = map(int, input().rstrip().split())
+alpha = sorted(list(input().rstrip().split()))
 
-def combi(idx, level):
-	if level == L:
-		cnt = len(set(choose) & set(['a', 'e', 'i', 'o', 'u']))
-		if cnt >= 1 and L-cnt >= 2 :
-			print(''.join(choose))
-		return
+def check(a):
+	b = {'a', 'e', 'o', 'i', 'u'}
+	if len(set(a) & b) < 1: return False
+	if len(set(a) - b) < 2: return False
+	return True
 
-	for i in range(idx, len(lst)):
-		choose.append(lst[i])
-		combi(i+1, level+1)
-		choose.pop()
-
-combi(0, 0)
+pwd = list(combinations(alpha, L))
+[print(''.join(p)) for p in pwd if check(p)]
