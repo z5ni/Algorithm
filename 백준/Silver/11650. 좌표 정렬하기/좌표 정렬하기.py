@@ -1,11 +1,7 @@
-N = int(input())
-lst = []
+import sys
+input = sys.stdin.readline
 
-for _ in range(N):
-	x, y = map(int, input().split())
-	lst.append((x, y))
+n = int(input().rstrip())
+xy = sorted([tuple(map(int, input().rstrip().split())) for _ in range(n)], key=lambda x: (x[0], x[1]))
 
-lst = sorted(lst)
-
-for l in lst:
-	print(' '.join(map(str, l)))
+[print(x[0], x[1]) for x in xy]
