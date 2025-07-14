@@ -1,24 +1,7 @@
-N = int(input())
+import sys
+from itertools import permutations
+input = sys.stdin.readline
 
-lst = list(range(1, N+1))
-check = [False] * N
-choose = []
-
-def per(level):
-	if level == N:
-		print(' '.join(map(str, choose)))
-		return
-
-	for i in range(0, N):
-		if check[i] == True:
-			continue
-		choose.append(lst[i])
-		check[i] = True
-
-		per(level+1)
-
-		check[i] = False
-		choose.pop()
-
-
-per(0)
+n = int(input().rstrip())
+per = list(permutations(range(1, n + 1), n))
+[print(' '.join(map(str, p))) for p in per]
