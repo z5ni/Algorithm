@@ -1,23 +1,17 @@
-def combi(n):
-	if len(lotto) == 6:
-		print(' '.join(map(str, lotto)))
-		return
+import sys
+from itertools import combinations
 
-	for i in range(n, len(lst)):
-		lotto.append(lst[i])	# 숫자 추가
-		combi(i+1)	# 다음 숫자 선택
-		lotto.pop()	# 방금 추가한 숫자 제거 후 다른 숫자로 시도
-
+input = sys.stdin.readline
 
 while True:
-	N = input()
-	if N == "0":
+	n = input().rstrip()
+	if n == '0':
 		break
-	
-	a = list(map(int, N.split()))
-	R = a[0]
-	lst = a[1:]
-	lotto = []
+	n = list(map(int, n.split()))
 
-	combi(0)
+	k, lst = n[0], n[1:]
+	lst.sort()
+	L = list(combinations(lst, 6))
+	for l in L:
+		print(' '.join(map(str, l)))
 	print()
