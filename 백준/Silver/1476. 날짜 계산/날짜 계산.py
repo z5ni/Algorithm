@@ -1,15 +1,9 @@
 import sys
-from itertools import combinations
-
-input = sys.stdin.readline
-e, s, m = map(int, input().rstrip().split())
-year = 1
-
+E, S, M = map(int, input().rstrip().split())
+year = E
 while True:
-	if (year - e) % 15 == 0 and (year - s) % 28 == 0 and (year - m) % 19 == 0:
+	if (year - S) % 28 == 0 and (year - M) % 19 == 0:
+		print(year)
 		break
 
-	year += 1
-
-print(year)
-
+	year += 15
