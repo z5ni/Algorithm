@@ -1,10 +1,9 @@
 import sys
 
 input = sys.stdin.readline
+N = list(map(int, input().rstrip()))
 
-N = int(input().rstrip())
-L = list(map(int, list(str(N))))
-if sum(L) % 3 == 0 and 0 in L:
-	print(''.join(map(str, sorted(L, reverse=True))))
+if sum(N) % 3 == 0 and 0 in N:
+	print(''.join(map(str, sorted(N, reverse=True))))
 else:
 	print(-1)
